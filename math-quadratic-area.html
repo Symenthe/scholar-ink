@@ -1,0 +1,185 @@
+---
+layout: default
+title: 二次函数与几何综合：面积最值问题
+description: 中考数学压轴题经典题型详解，从建立函数关系式到求最值的完整思路
+---
+
+<section class="page-header math-header">
+  <div class="container">
+    <h1>数学压轴题</h1>
+    <p>二次函数与几何综合：面积最值问题</p>
+  </div>
+</section>
+
+<article class="article-page">
+  <div class="container">
+    <div class="article-meta-bar math-meta">
+      <span class="article-category math-cat">数学题解</span>
+      <span class="article-date">2025-04-25</span>
+      <div class="math-difficulty">
+        <span class="diff-star filled"></span>
+        <span class="diff-star filled"></span>
+        <span class="diff-star filled"></span>
+        <span class="diff-star filled"></span>
+        <span class="diff-star"></span>
+        <span class="diff-text">较难</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <h2>题目</h2>
+      <div class="problem-box">
+        <p>如图，抛物线 y = -x<sup>2</sup> + bx + c 与 x 轴交于 A(-1, 0)、B(3, 0) 两点，与 y 轴交于点 C。</p>
+        <p>（1）求抛物线的解析式；</p>
+        <p>（2）点 P 是抛物线上的动点（不与 A、B 重合），连接 PA、PB，当三角形 PAB 的面积最大时，求点 P 的坐标及最大面积；</p>
+        <p>（3）在（2）的条件下，抛物线上是否存在点 Q，使得三角形 QAB 的面积等于三角形 PAB 面积的一半？若存在，求出所有符合条件的点 Q 的坐标。</p>
+      </div>
+
+      <h2>解题思路</h2>
+      <p>这道题是典型的<strong>二次函数与面积最值</strong>综合题。核心思路是：</p>
+      <ol>
+        <li><strong>待定系数法</strong>求抛物线解析式（第一问）</li>
+        <li><strong>建立函数关系式</strong>表示面积，转化为二次函数最值问题（第二问）</li>
+        <li><strong>方程思想</strong>：令面积等于某个值，解方程求点坐标（第三问）</li>
+      </ol>
+
+      <h2>详细解答</h2>
+
+      <h3>第一问：求抛物线解析式</h3>
+      <p>因为 A(-1, 0)、B(3, 0) 在抛物线上，设抛物线解析式为交点式：</p>
+      <div class="math-block">
+        <p>y = a(x + 1)(x - 3)</p>
+      </div>
+      <p>其中 a = -1（由题目给出的 y = -x<sup>2</sup> + bx + c 可知二次项系数为 -1）。</p>
+      <p>展开验证：</p>
+      <div class="math-block">
+        <p>y = -(x + 1)(x - 3) = -(x<sup>2</sup> - 2x - 3) = -x<sup>2</sup> + 2x + 3</p>
+      </div>
+      <div class="answer-box">
+        <p><strong>答：</strong>抛物线的解析式为 y = -x<sup>2</sup> + 2x + 3。</p>
+      </div>
+
+      <h3>第二问：面积最值</h3>
+      <p><strong>关键思路：</strong>三角形 PAB 的底边 AB 是固定的，只需要让<strong>高最大</strong>即可。</p>
+      <p>AB 的长度 = 3 - (-1) = 4。</p>
+      <p>设 P(x, -x<sup>2</sup> + 2x + 3)，则 P 到 AB（x 轴）的距离为 P 点的纵坐标的绝对值：</p>
+      <div class="math-block">
+        <p>h = |-x<sup>2</sup> + 2x + 3| = -x<sup>2</sup> + 2x + 3（在 x 轴上方时为正）</p>
+      </div>
+      <p>三角形的面积：</p>
+      <div class="math-block">
+        <p>S = (1/2) x AB x h = (1/2) x 4 x (-x<sup>2</sup> + 2x + 3) = -2x<sup>2</sup> + 4x + 6</p>
+      </div>
+      <p>这是一个关于 x 的二次函数，开口向下，有最大值。</p>
+      <p>当 x = -4 / (2 x (-2)) = 1 时，S 取最大值：</p>
+      <div class="math-block">
+        <p>S<sub>max</sub> = -2(1)<sup>2</sup> + 4(1) + 6 = -2 + 4 + 6 = 8</p>
+      </div>
+      <p>将 x = 1 代入抛物线解析式求 P 点纵坐标：</p>
+      <div class="math-block">
+        <p>y = -(1)<sup>2</sup> + 2(1) + 3 = -1 + 2 + 3 = 4</p>
+      </div>
+      <div class="answer-box">
+        <p><strong>答：</strong>当点 P 的坐标为 (1, 4) 时，三角形 PAB 的面积最大，最大面积为 8。</p>
+      </div>
+
+      <h3>第三问：存在性问题</h3>
+      <p>设三角形 QAB 的面积 = S<sub>max</sub> / 2 = 4。</p>
+      <div class="math-block">
+        <p>(1/2) x 4 x |-x<sup>2</sup> + 2x + 3| = 4</p>
+        <p>|-x<sup>2</sup> + 2x + 3| = 2</p>
+      </div>
+      <p>分两种情况：</p>
+      <p><strong>情况一：</strong>-x<sup>2</sup> + 2x + 3 = 2</p>
+      <div class="math-block">
+        <p>-x<sup>2</sup> + 2x + 1 = 0</p>
+        <p>x<sup>2</sup> - 2x - 1 = 0</p>
+        <p>x = (2 +/- sqrt(4 + 4)) / 2 = 1 +/- sqrt(2)</p>
+      </div>
+      <p>x<sub>1</sub> = 1 + sqrt(2) 时，y = 2；x<sub>2</sub> = 1 - sqrt(2) 时，y = 2。</p>
+      <p><strong>情况二：</strong>-x<sup>2</sup> + 2x + 3 = -2</p>
+      <div class="math-block">
+        <p>-x<sup>2</sup> + 2x + 5 = 0</p>
+        <p>x<sup>2</sup> - 2x - 5 = 0</p>
+        <p>判别式 Delta = 4 + 20 = 24 > 0</p>
+        <p>x = (2 +/- sqrt(24)) / 2 = 1 +/- sqrt(6)</p>
+      </div>
+      <p>x<sub>3</sub> = 1 + sqrt(6) 时，y = -2；x<sub>4</sub> = 1 - sqrt(6) 时，y = -2。</p>
+      <p>验证这些点不与 A、B 重合：-1 和 3 都不等于 1 +/- sqrt(2) 和 1 +/- sqrt(6)，满足条件。</p>
+      <div class="answer-box">
+        <p><strong>答：</strong>存在四个符合条件的点 Q，坐标分别为 (1+sqrt(2), 2)、(1-sqrt(2), 2)、(1+sqrt(6), -2)、(1-sqrt(6), -2)。</p>
+      </div>
+
+      <h2>方法总结</h2>
+      <div class="summary-box">
+        <h4>二次函数面积最值问题通用方法</h4>
+        <ol>
+          <li><strong>确定不变量</strong>：找到固定的边（底边）</li>
+          <li><strong>表示变量</strong>：用含 x 的式子表示高（或另一条边）</li>
+          <li><strong>建立面积函数</strong>：S = (1/2) x 底 x 高，得到 S 关于 x 的二次函数</li>
+          <li><strong>求最值</strong>：用配方法或顶点公式求最大/最小值</li>
+          <li><strong>检验</strong>：检查最值点是否在允许范围内</li>
+        </ol>
+      </div>
+
+      <h2>举一反三</h2>
+      <p>试着用同样的思路解决这道变式题：</p>
+      <div class="problem-box">
+        <p>抛物线 y = x<sup>2</sup> - 4x + 3 与 x 轴交于 A、B 两点，点 P 是抛物线对称轴上的一个动点。当三角形 PAB 的周长最小时，求点 P 的坐标。</p>
+      </div>
+      <p><strong>提示：</strong>这道题用到的不是面积最值，而是<strong>将军饮马模型</strong>——在对称轴上找一点 P，使 PA + PB 最小。利用抛物线的对称性，将 B 关于对称轴的对称点找到，再与 A 连线即可。</p>
+    </div>
+  </div>
+</article>
+
+<style>
+  .article-page { padding: var(--space-2xl) 0 var(--space-3xl); }
+  .math-meta { color: var(--color-text-muted); }
+  .math-cat { background: rgba(39,174,96,0.1); color: var(--color-math); }
+  .article-meta-bar {
+    display: flex; gap: var(--space-lg); align-items: center;
+    margin-bottom: var(--space-2xl); font-size: 0.875rem;
+  }
+  .article-category {
+    padding: 0.25rem 0.75rem; border-radius: var(--radius-sm); font-weight: 600;
+  }
+  .math-difficulty { display: flex; align-items: center; gap: 2px; }
+  .diff-star {
+    width: 12px; height: 12px; display: inline-block; background: var(--color-border);
+    clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  }
+  .diff-star.filled { background: #f39c12; }
+  .diff-text { margin-left: var(--space-sm); font-size: 0.75rem; color: var(--color-text-muted); }
+  .article-body { max-width: 780px; }
+  .article-body h2 {
+    font-size: 1.375rem; color: var(--color-primary);
+    margin: var(--space-2xl) 0 var(--space-lg);
+    padding-bottom: var(--space-sm); border-bottom: 2px solid var(--color-math);
+    display: inline-block;
+  }
+  .article-body h3 { font-size: 1.125rem; color: var(--color-primary); margin: var(--space-xl) 0 var(--space-md); }
+  .article-body p { margin-bottom: var(--space-md); line-height: 1.9; }
+  .article-body ol { padding-left: var(--space-xl); margin-bottom: var(--space-lg); }
+  .article-body li { margin-bottom: var(--space-sm); line-height: 1.8; }
+  .problem-box {
+    background: #f8f9fa; border: 1px solid #e9ecef; border-left: 4px solid var(--color-math);
+    padding: var(--space-xl); border-radius: var(--radius-md); margin: var(--space-lg) 0;
+  }
+  .problem-box p { margin-bottom: var(--space-sm); color: var(--color-text); }
+  .math-block {
+    background: var(--color-bg); padding: var(--space-lg); border-radius: var(--radius-sm);
+    text-align: center; font-size: 1.0625rem; margin: var(--space-md) 0; font-family: var(--font-serif);
+  }
+  .answer-box {
+    background: #f0faf0; border: 1px solid #c8e6c8; border-radius: var(--radius-md);
+    padding: var(--space-lg); margin: var(--space-lg) 0;
+  }
+  .answer-box p { margin-bottom: 0; }
+  .summary-box {
+    background: rgba(39,174,96,0.06); border-left: 3px solid var(--color-math);
+    padding: var(--space-xl); border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin: var(--space-lg) 0;
+  }
+  .summary-box h4 { margin-bottom: var(--space-md); color: var(--color-primary); }
+  .summary-box ol { margin-bottom: 0; }
+</style>
