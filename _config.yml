@@ -1,7 +1,7 @@
 title: 墨韵学社
 description: 分享语文英语作文与数学压轴题解法的学习社区
-baseurl: ""
-url: "https://seencoloo.github.io"
+baseurl: "/scholar-ink"
+url: "https://symenthe.github.io"
 timezone: Asia/Shanghai
 lang: zh-CN
 encoding: utf-8
@@ -31,16 +31,13 @@ kramdown:
 
 plugins:
   - jekyll-seo-tag
-  - jekyll-sitemap
 
 # 构建排除
 exclude:
-  - "*.sh"
   - "README.md"
   - "Gemfile"
   - "Gemfile.lock"
-  - "node_modules"
-  - "vendor"
+  - "scripts"
 
 # 后端域名文件路径（通过内网穿透动态更新）
 backend_domain_file: "/backend-domain.txt"
