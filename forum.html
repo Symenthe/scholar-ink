@@ -17,7 +17,7 @@ description: 墨韵学社 Discuz! 论坛，与同学一起交流学习心得
     <div class="forum-loading" id="forumLoading">
       <div class="spinner"></div>
       <p>正在连接论坛服务器...</p>
-      <p class="forum-hint" id="forumHint"></p>
+      <p class="forum-hint" id="forumHint">首次加载可能需要几秒钟</p>
     </div>
 
     <!-- 论坛嵌入区域 -->
@@ -25,6 +25,7 @@ description: 墨韵学社 Discuz! 论坛，与同学一起交流学习心得
       <div class="forum-toolbar">
         <span class="forum-status" id="forumStatus">已连接</span>
         <button class="btn btn-sm btn-outline" onclick="reloadForum()">刷新连接</button>
+        <a href="#" id="forumDirectLink" class="btn btn-sm btn-outline" target="_blank" rel="noopener">新窗口打开</a>
       </div>
       <iframe id="forumIframe" src="" frameborder="0" allowfullscreen></iframe>
     </div>
@@ -75,53 +76,55 @@ description: 墨韵学社 Discuz! 论坛，与同学一起交流学习心得
 </section>
 
 <script>
+var currentBackendUrl = '';
+
 function getBackendUrl() {
-  // 尝试从 GitHub 仓库文件获取动态域名
   return fetch('/backend-domain.txt')
-    .then(r => {
+    .then(function(r) {
       if (!r.ok) throw new Error('域名文件不存在');
       return r.text();
     })
-    .then(text => {
-      const domain = text.trim();
+    .then(function(text) {
+      var domain = text.trim();
       if (!domain) throw new Error('域名为空');
       return domain;
     });
 }
 
 async function connectForum() {
-  const loading = document.getElementById('forumLoading');
-  const intro = document.getElementById('forumIntro');
-  const frame = document.getElementById('forumFrame');
-  const offline = document.getElementById('forumOffline');
-  const hint = document.getElementById('forumHint');
+  var loading = document.getElementById('forumLoading');
+  var intro = document.getElementById('forumIntro');
+  var frame = document.getElementById('forumFrame');
+  var offline = document.getElementById('forumOffline');
+  var hint = document.getElementById('forumHint');
 
-  // 显示加载状态
   intro.style.display = 'none';
   loading.style.display = 'block';
   frame.style.display = 'none';
   offline.style.display = 'none';
 
   try {
-    const backendUrl = await getBackendUrl();
+    var backendUrl = await getBackendUrl();
+    currentBackendUrl = backendUrl;
     hint.textContent = '已获取服务器地址，正在连接...';
 
     // 预检服务器是否可达
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
+    var controller = new AbortController();
+    var timeout = setTimeout(function() { controller.abort(); }, 10000);
 
-    const response = await fetch(backendUrl + '/forum.php', {
+    await fetch(backendUrl + '/forum.php', {
       method: 'HEAD',
       mode: 'no-cors',
       signal: controller.signal
     });
     clearTimeout(timeout);
 
-    // 加载论坛
+    // 加载论坛到 iframe
     document.getElementById('forumIframe').src = backendUrl + '/forum.php';
+    document.getElementById('forumDirectLink').href = backendUrl + '/forum.php';
     frame.style.display = 'block';
     loading.style.display = 'none';
-    document.getElementById('forumStatus').textContent = '已连接: ' + backendUrl;
+    document.getElementById('forumStatus').textContent = '已连接';
 
   } catch (err) {
     loading.style.display = 'none';
