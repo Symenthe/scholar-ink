@@ -1,0 +1,136 @@
+---
+layout: default
+title: 学社论坛
+description: 墨韵学社 Discuz! 论坛，与同学一起交流学习心得
+---
+
+<section class="page-header forum-page-header">
+  <div class="container">
+    <h1>学社论坛</h1>
+    <p>与志同道合的同学一起讨论、分享、成长</p>
+  </div>
+</section>
+
+<section class="forum-container">
+  <div class="container">
+    <!-- 论坛加载状态 -->
+    <div class="forum-loading" id="forumLoading">
+      <div class="spinner"></div>
+      <p>正在连接论坛服务器...</p>
+      <p class="forum-hint" id="forumHint"></p>
+    </div>
+
+    <!-- 论坛嵌入区域 -->
+    <div class="forum-frame-wrapper" id="forumFrame" style="display:none;">
+      <div class="forum-toolbar">
+        <span class="forum-status" id="forumStatus">已连接</span>
+        <button class="btn btn-sm btn-outline" onclick="reloadForum()">刷新连接</button>
+      </div>
+      <iframe id="forumIframe" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <!-- 论坛离线提示 -->
+    <div class="forum-offline" id="forumOffline" style="display:none;">
+      <div class="offline-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64">
+          <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+        </svg>
+      </div>
+      <h2>论坛暂时无法访问</h2>
+      <p>论坛服务器可能正在维护，或者内网穿透服务已断开。</p>
+      <p>请稍后再试，或联系管理员。</p>
+      <div class="offline-actions">
+        <button class="btn btn-primary" onclick="reloadForum()">重新连接</button>
+        <a href="/" class="btn btn-outline">返回首页</a>
+      </div>
+    </div>
+
+    <!-- 论坛注册/登录提示 -->
+    <div class="forum-intro" id="forumIntro">
+      <div class="intro-card">
+        <h2>欢迎来到墨韵学社论坛</h2>
+        <p>本论坛基于 Discuz! X5 搭建，提供语文作文讨论、英语学习交流、数学解题互助等功能。</p>
+        <div class="intro-features">
+          <div class="intro-feature">
+            <h3>作文交流</h3>
+            <p>发布你的作文，获得同学和老师的点评与建议</p>
+          </div>
+          <div class="intro-feature">
+            <h3>数学互助</h3>
+            <p>遇到不会的题目？发帖求助，大家一起讨论</p>
+          </div>
+          <div class="intro-feature">
+            <h3>资料分享</h3>
+            <p>分享学习资料、考试经验、学习方法</p>
+          </div>
+        </div>
+        <div class="intro-note">
+          <p><strong>提示：</strong>论坛通过内网穿透服务提供外网访问。如果无法加载，说明本地服务器未启动或穿透服务已断开。</p>
+          <p>点击下方按钮尝试连接论坛服务器。</p>
+        </div>
+        <button class="btn btn-primary btn-lg" onclick="connectForum()">连接论坛</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function getBackendUrl() {
+  // 尝试从 GitHub 仓库文件获取动态域名
+  return fetch('/backend-domain.txt')
+    .then(r => {
+      if (!r.ok) throw new Error('域名文件不存在');
+      return r.text();
+    })
+    .then(text => {
+      const domain = text.trim();
+      if (!domain) throw new Error('域名为空');
+      return domain;
+    });
+}
+
+async function connectForum() {
+  const loading = document.getElementById('forumLoading');
+  const intro = document.getElementById('forumIntro');
+  const frame = document.getElementById('forumFrame');
+  const offline = document.getElementById('forumOffline');
+  const hint = document.getElementById('forumHint');
+
+  // 显示加载状态
+  intro.style.display = 'none';
+  loading.style.display = 'block';
+  frame.style.display = 'none';
+  offline.style.display = 'none';
+
+  try {
+    const backendUrl = await getBackendUrl();
+    hint.textContent = '已获取服务器地址，正在连接...';
+
+    // 预检服务器是否可达
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+
+    const response = await fetch(backendUrl + '/forum.php', {
+      method: 'HEAD',
+      mode: 'no-cors',
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+
+    // 加载论坛
+    document.getElementById('forumIframe').src = backendUrl + '/forum.php';
+    frame.style.display = 'block';
+    loading.style.display = 'none';
+    document.getElementById('forumStatus').textContent = '已连接: ' + backendUrl;
+
+  } catch (err) {
+    loading.style.display = 'none';
+    offline.style.display = 'block';
+    console.error('论坛连接失败:', err);
+  }
+}
+
+function reloadForum() {
+  connectForum();
+}
+</script>

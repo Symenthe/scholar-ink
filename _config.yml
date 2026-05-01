@@ -1,0 +1,46 @@
+title: 墨韵学社
+description: 分享语文英语作文与数学压轴题解法的学习社区
+baseurl: ""
+url: "https://seencoloo.github.io"
+timezone: Asia/Shanghai
+lang: zh-CN
+encoding: utf-8
+
+# 导航菜单
+nav:
+  - name: 首页
+    url: /
+  - name: 语文作文
+    url: /chinese-essays/
+  - name: 英语作文
+    url: /english-essays/
+  - name: 数学压轴
+    url: /math-challenges/
+  - name: 论坛
+    url: /forum/
+
+# 主题配置
+theme-color: "#2c3e50"
+accent-color: "#e67e22"
+
+# Jekyll 配置
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# 构建排除
+exclude:
+  - "*.sh"
+  - "README.md"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "node_modules"
+  - "vendor"
+
+# 后端域名文件路径（通过内网穿透动态更新）
+backend_domain_file: "/backend-domain.txt"
